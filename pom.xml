@@ -16,6 +16,6 @@
 
     <modules>
         <module>spring</module>
-        <module>List</module>
+        <module>collection</module>
     </modules>
 </project>

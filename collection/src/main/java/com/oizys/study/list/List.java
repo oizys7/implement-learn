@@ -1,10 +1,12 @@
-package com.oizys.study;
+package com.oizys.study.list;
+
+import com.oizys.study.Collection;
 
 /**
  * @author wyn
  * Created on 2025/8/6
  */
-public interface List<E> extends Iterable<E> {
+public interface List<E> extends Collection<E> {
 
     void add(E element);
 

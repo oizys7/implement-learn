@@ -1,7 +1,8 @@
-package com.oizys.study;
+package com.oizys.study.list;
 
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.function.IntFunction;
 
 /**
  * @author wyn
@@ -129,6 +130,11 @@ public class LinkedList<E> implements List<E> {
     }
 
     @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
     public void clear() {
         head = null;
         size = 0;
@@ -140,6 +146,22 @@ public class LinkedList<E> implements List<E> {
         for (Node<E> x = head; x != null; x = x.next)
             result[i++] = x.element;
         return result;
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        if (a.length < size)
+            a = (T[])java.lang.reflect.Array.newInstance(
+                    a.getClass().getComponentType(), size);
+        int i = 0;
+        Object[] result = a;
+        for (Node<E> x = head; x != null; x = x.next)
+            result[i++] = x.element;
+
+        if (a.length > size)
+            a[size] = null;
+
+        return a;
     }
 
     @Override

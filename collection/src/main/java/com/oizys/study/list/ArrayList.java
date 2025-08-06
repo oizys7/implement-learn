@@ -1,6 +1,7 @@
-package com.oizys.study;
+package com.oizys.study.list;
 
 import java.util.*;
+import java.util.function.IntFunction;
 
 /**
  * @author wyn
@@ -81,6 +82,11 @@ public class ArrayList<E> implements List<E> {
     }
 
     @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
     public void clear() {
 //        this.size = 0;
 //        this.elementData = null;
@@ -90,6 +96,22 @@ public class ArrayList<E> implements List<E> {
         for (int i = 0; i < size; i++) {
             es[i] = null;
         }
+    }
+
+    @Override
+    public Object[] toArray() {
+        return Arrays.copyOf(elementData, size);
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        if (a.length < size)
+            // Make a new array of a's runtime type, but my contents:
+            return (T[]) Arrays.copyOf(elementData, size, a.getClass());
+        System.arraycopy(elementData, 0, a, 0, size);
+        if (a.length > size)
+            a[size] = null;
+        return a;
     }
 
     @Override

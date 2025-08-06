@@ -1,6 +1,6 @@
-import com.oizys.study.ArrayList;
-import com.oizys.study.LinkedList;
-import com.oizys.study.List;
+import com.oizys.study.list.ArrayList;
+import com.oizys.study.list.LinkedList;
+import com.oizys.study.list.List;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
