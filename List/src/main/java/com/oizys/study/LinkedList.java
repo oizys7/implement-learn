@@ -1,6 +1,7 @@
 package com.oizys.study;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * @author wyn
@@ -43,26 +44,20 @@ public class LinkedList<E> implements List<E> {
         Node<E> newNode = new Node<>(element, oldNode, oldNode.prev);
         oldNode.prev.next = newNode;
         oldNode.prev = newNode;
+        size++;
     }
 
     private Node<E> findNode(int index) {
         Node<E> result = null;
         if (index < size / 2) {
-            for (Node<E> node = head; node != null; node = node.next) {
-                if (index == 0) {
-                    result = node;
-                    break;
-                }
-                index--;
+            result = head;
+            for (int i = 0; i < index; i++) {
+                result = result.next;
             }
-
         } else {
-            for (Node<E> node = tail; node != null; node = node.prev) {
-                if (index == 0) {
-                    result = node;
-                    break;
-                }
-                index--;
+            result = tail;
+            for (int i = size - 1; i > index; i--) {
+                result = result.prev;
             }
         }
         return result;
@@ -70,32 +65,81 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        return null;
+        checkIndex(index);
+        return removeNode(findNode(index));
+    }
+
+    private E removeNode(Node<E> node) {
+        Node<E> pre = node.prev;
+        Node<E> next = node.next;
+        if (pre == null) {
+            head = next;
+        } else {
+            pre.next = next;
+        }
+        if (next == null) {
+            tail = pre;
+        } else {
+            next.prev = pre;
+        }
+        node.prev = null;
+        node.next = null;
+        size--;
+        return node.element;
     }
 
     @Override
     public boolean remove(E element) {
+        Node<E> node = head;
+        while (node != null) {
+            if (Objects.equals(node.element, element)) {
+                removeNode(node);
+                return true;
+            }
+            node = node.next;
+        }
         return false;
     }
 
     @Override
     public E set(int index, E element) {
-        return null;
+        checkIndex( index);
+        if (index == size) {
+            add(element);
+            return null;
+        }
+        Node< E> oldNode = findNode(index);
+        Node<E> newNode = new Node<>(element, oldNode.next, oldNode.prev);
+        oldNode.prev.next = newNode;
+        oldNode.next.prev = newNode;
+        return oldNode.element;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        return findNode(index).element;
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
     public void clear() {
+        head = null;
+        size = 0;
+    }
 
+    public Object[] toArray() {
+        Object[] result = new Object[size];
+        int i = 0;
+        for (Node<E> x = head; x != null; x = x.next)
+            result[i++] = x.element;
+        return result;
     }
 
     @Override

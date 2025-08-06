@@ -3,6 +3,8 @@ import com.oizys.study.LinkedList;
 import com.oizys.study.List;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -29,7 +31,7 @@ class ListTest {
 
     @Test
     void LinkedListTest() {
-        List<String> list = new LinkedList<>();
+        LinkedList<String> list = new LinkedList<>();
         for (int i = 0; i < 30; i++) {
             list.add(String.valueOf(i));
         }
@@ -37,9 +39,10 @@ class ListTest {
         assertEquals(31, list.size());
         list.remove(15);
         list.remove("18");
-        assertEquals(28, list.size());
+        System.out.println(Arrays.toString(list.toArray()));
+        assertEquals(29, list.size());
         assertEquals("16", list.get(16));
-        assertEquals("24", list.get(22));
+        assertEquals("23", list.get(22));
 
         list.forEach(System.out::println);
     }
