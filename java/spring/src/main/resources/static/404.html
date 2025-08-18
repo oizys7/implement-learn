@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            letter-spacing: 10px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .error-text {
+            font-size: 28px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .message {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .planet {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .planet:nth-child(1) {
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .planet:nth-child(2) {
+            top: 20%;
+            right: 20%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 2s;
+        }
+
+        .planet:nth-child(3) {
+            bottom: 15%;
+            left: 25%;
+            width: 40px;
+            height: 40px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 背景装饰行星 -->
+<div class="planet"></div>
+<div class="planet"></div>
+<div class="planet"></div>
+
+<div class="container">
+    <div class="error-code">404</div>
+    <div class="error-text">页面未找到</div>
+    <p class="message">
+        抱歉，你访问的页面不存在。<br>
+        它可能已被移除、更改地址，或你输入了错误的网址。
+    </p>
+</div>
+
+<script>
+    // 可选：添加一些交互效果
+    document.addEventListener('mousemove', (e) => {
+        const planets = document.querySelectorAll('.planet');
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        planets.forEach((planet, index) => {
+            const factor = (index + 1) * 10;
+            planet.style.transform = `translate(${x * factor}px, ${y * factor}px) rotate(${x * 360}deg)`;
+        });
+    });
+</script>
+</body>
+</html>

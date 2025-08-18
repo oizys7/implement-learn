@@ -30,5 +30,5 @@ public interface BeanFactory {
 
     <T> List<T> getBeans(Class<T> requiredType) throws BeansException;
 
-//    boolean containsBean(String name);
+//    boolean containsBean(String value);
 }

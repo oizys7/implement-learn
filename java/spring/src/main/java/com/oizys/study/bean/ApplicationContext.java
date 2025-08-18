@@ -150,6 +150,7 @@ public class ApplicationContext implements BeanFactory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanType) throws BeansException {
         String beanName = this.beanDefinitionMap.values().stream()
                 .filter(bd -> beanType.isAssignableFrom(bd.getBeanType()))
@@ -160,6 +161,7 @@ public class ApplicationContext implements BeanFactory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> List<T> getBeans(Class<T> beanType) {
         return this.beanDefinitionMap.values().stream()
                 .filter(bd -> beanType.isAssignableFrom(bd.getBeanType()))
