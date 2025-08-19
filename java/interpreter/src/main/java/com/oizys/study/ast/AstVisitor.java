@@ -5,5 +5,10 @@ package com.oizys.study.ast;
  * Created on 2025/8/18
  */
 public interface AstVisitor {
-    void accept(AstNode node);
+    void accept(ProgramNode node);
+
+    void accept(BiOperateNode node);
+
+    void accept(ConstantNode node);
+
 }

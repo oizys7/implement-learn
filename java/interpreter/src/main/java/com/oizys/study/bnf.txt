@@ -1,4 +1,5 @@
 -----------------------------------------
+支持四则运算 5+1-3*2/4
 Prog                 :=      Expr
 Expr                 :=      AddExpr
 AddExpr              :=      MultiExpr
@@ -9,6 +10,7 @@ MultiExpr            :=      PrimaryExpr
                      :=      MultiExpr / PrimaryExpr
 PrimaryExpr          :=      Num
 -----------------------------------------
+支持小括号改变运算顺序 5+(1-3)*2/4
 Prog                 :=      Expr
 Expr                 :=      AddExpr
 AddExpr              :=      MultiExpr
@@ -19,5 +21,4 @@ MultiExpr            :=      PrimaryExpr
                      :=      MultiExpr / PrimaryExpr
 PrimaryExpr          :=      Num
                      :=      (Expr)
-
 -----------------------------------------

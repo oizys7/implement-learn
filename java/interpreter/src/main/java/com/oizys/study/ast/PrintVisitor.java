@@ -1,35 +1,37 @@
 package com.oizys.study.ast;
 
-import com.oizys.study.Lexical;
-
 /**
  * @author wyn
  * Created on 2025/8/19
  */
-public class PrintVisitor extends AstNode implements AstVisitor  {
+public class PrintVisitor implements AstVisitor  {
 
     public PrintVisitor() {
     }
 
-    @Override
-    public void accept(AstNode node) {
+    public void acceptAstNode(AstNode node) {
         if (node == null) {
             return;
         }
-        accept( node.right);
-        accept( node.left);
+        acceptAstNode( node.right);
+        acceptAstNode( node.left);
         if (node.value != null) {
             System.out.print(node.value + " ");
         }
     }
 
     @Override
-    public void accept(AstVisitor visitor) {
-        visitor.accept(this);
+    public void accept(ProgramNode node) {
+        acceptAstNode(node);
     }
 
     @Override
-    public AstNode parse() {
-        return null;
+    public void accept(BiOperateNode node) {
+        acceptAstNode(node);
+    }
+
+    @Override
+    public void accept(ConstantNode node) {
+        acceptAstNode(node);
     }
 }

@@ -10,6 +10,17 @@ import com.oizys.study.ast.ProgramNode;
 public class Main {
     public static final String CODE = "5+1-3*4/2";
     public static void main(String[] args) {
+        if (args.length == 0) {
+            throw new RuntimeException("请输入代码");
+        }
+        Lexical lex = new Lexical(args[0]);
+        Parser parser = new Parser(lex);
+        parser.parse();
+        System.out.println();
+        parser.accept(new CodeGen());
+    }
+
+    public static void test() {
         Lexical lex = new Lexical(CODE);
         for (Token token : lex) {
             System.out.print(token.getValue() + " ");
@@ -17,6 +28,6 @@ public class Main {
         Parser parser = new Parser(lex);
         parser.parse();
         System.out.println();
-        parser.accept(new PrintVisitor());
+        parser.accept(new CodeGen());
     }
 }

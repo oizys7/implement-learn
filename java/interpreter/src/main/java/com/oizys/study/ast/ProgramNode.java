@@ -18,7 +18,7 @@ public class ProgramNode extends AstNode{
 
     @Override
     public ProgramNode parse() {
-        this.left = new ExpressionNode(lex).parse();
+        this.left = new BiOperateNode(lex).parse();
         return this;
     }
 }

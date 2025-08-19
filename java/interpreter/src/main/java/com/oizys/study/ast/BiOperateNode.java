@@ -2,20 +2,21 @@ package com.oizys.study.ast;
 
 import com.oizys.study.Lexical;
 import com.oizys.study.TokenType;
-import com.oizys.study.ast.express.BiOperateExpress;
-import com.oizys.study.ast.express.BiOperateExpress.BiOperateType;
-import com.oizys.study.ast.express.NumExpress;
 
 /**
  * @author wyn
  * Created on 2025/8/18
  */
-public class ExpressionNode extends AstNode{
+public class BiOperateNode extends AstNode {
 
     protected BiOperateType type;
 
-    public ExpressionNode(Lexical lex) {
+    public BiOperateNode(Lexical lex) {
         super(lex);
+    }
+
+    public BiOperateType getType() {
+        return type;
     }
 
     @Override
@@ -24,17 +25,16 @@ public class ExpressionNode extends AstNode{
     }
 
     @Override
-    public ExpressionNode parse() {
-        this.left = parseAddExpr();
-        return this;
+    public AstNode parse() {
+        return parseAddExpr();
     }
 
-    public ExpressionNode parseAddExpr() {
-        ExpressionNode left = parseMultipartExpr();
+    public AstNode parseAddExpr() {
+        AstNode left = parseMultipartExpr();
         while (lex.match(TokenType.ADD)
                 || lex.match(TokenType.SUB)) {
 
-            BiOperateExpress node = new BiOperateExpress(lex);
+            BiOperateNode node = new BiOperateNode(lex);
             if (lex.match(TokenType.ADD)) {
                 node.type = BiOperateType.ADD;
                 node.value = "+";
@@ -50,11 +50,11 @@ public class ExpressionNode extends AstNode{
         return left;
     }
 
-    public ExpressionNode parseMultipartExpr() {
-        ExpressionNode left = parsePrimaryExpr();
+    public AstNode parseMultipartExpr() {
+        AstNode left = parsePrimaryExpr();
         while (lex.match(TokenType.MUL)
                 || lex.match(TokenType.DIV)) {
-            BiOperateExpress node = new BiOperateExpress(lex);
+            BiOperateNode node = new BiOperateNode(lex);
             if (lex.match(TokenType.MUL)) {
                 node.type = BiOperateType.MUL;
                 node.value = "*";
@@ -71,7 +71,7 @@ public class ExpressionNode extends AstNode{
         return left;
     }
 
-    public ExpressionNode parsePrimaryExpr() {
+    public AstNode parsePrimaryExpr() {
         if (lex.match(TokenType.EOF)) {
             return null;
         }
@@ -85,9 +85,9 @@ public class ExpressionNode extends AstNode{
         return parsePrimaryExpr();
     }
 
-    ExpressionNode parseNumExpr()
+    public AstNode parseNumExpr()
     {
-        NumExpress node = new NumExpress(lex);
+        ConstantNode node = new ConstantNode(lex);
         node.value = ((int)lex.getCurrentToken().getValue());
         lex.getNextToken();
         return node;
