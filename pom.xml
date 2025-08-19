@@ -19,6 +19,7 @@
     <modules>
         <module>java/spring</module>
         <module>java/collection</module>
+        <module>java/interpreter</module>
     </modules>
 
     <dependencyManagement>
