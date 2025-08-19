@@ -78,6 +78,9 @@ public class ExpressionNode extends AstNode{
         if (lex.match(TokenType.NUMBER)) {
             return parseNumExpr();
         }
+        if (lex.match(TokenType.LPAREN) || lex.match(TokenType.RPAREN)) {
+            lex.getNextToken();
+        }
         lex.getNextToken();
         return parsePrimaryExpr();
     }

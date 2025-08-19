@@ -8,8 +8,7 @@ import com.oizys.study.Lexical;
  */
 public class PrintVisitor extends AstNode implements AstVisitor  {
 
-    public PrintVisitor(Lexical lex) {
-        super(lex);
+    public PrintVisitor() {
     }
 
     @Override

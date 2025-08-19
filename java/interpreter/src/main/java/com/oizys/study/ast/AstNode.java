@@ -15,6 +15,9 @@ public abstract class AstNode {
     public abstract void accept(AstVisitor  visitor);
     public abstract AstNode parse();
 
+    public AstNode() {
+    }
+
     public AstNode(Lexical lex) {
        this.lex = lex;
     }

@@ -10,5 +10,7 @@ public enum TokenType {
     MUL,
     DIV,
     NUMBER,
+    LPAREN,
+    RPAREN,
     EOF
 }

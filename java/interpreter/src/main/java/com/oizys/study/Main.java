@@ -12,11 +12,11 @@ public class Main {
     public static void main(String[] args) {
         Lexical lex = new Lexical(CODE);
         for (Token token : lex) {
-            System.out.println(token.getValue());
+            System.out.print(token.getValue() + " ");
         }
         Parser parser = new Parser(lex);
         parser.parse();
         System.out.println();
-        parser.accept(new PrintVisitor(lex));
+        parser.accept(new PrintVisitor());
     }
 }

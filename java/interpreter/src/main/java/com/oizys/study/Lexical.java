@@ -30,13 +30,18 @@ public class Lexical implements Iterable< Token> {
         Token currentToken = null;
         while (index < sourceCode.length()) {
             char ch = sourceCode.charAt(index);
-            switch (ch) {
-                case ' ' -> index++;
-                case '+' -> {currentToken = new Token(TokenType.ADD, "+"); index++;}
-                case '-' -> {currentToken = new Token(TokenType.SUB, "-"); index++;}
-                case '*' -> {currentToken = new Token(TokenType.MUL, "*"); index++;}
-                case '/' -> {currentToken = new Token(TokenType.DIV, "/"); index++;}
-                case '\0' -> {currentToken = new Token(TokenType.EOF, "eof"); index++;}
+            if (ch == ' ') {
+                index++;
+                continue;
+            }
+            currentToken = switch (ch) {
+                case '+' -> new Token(TokenType.ADD, "+");
+                case '-' -> new Token(TokenType.SUB, "-");
+                case '*' -> new Token(TokenType.MUL, "*");
+                case '/' -> new Token(TokenType.DIV, "/");
+                case '(' -> new Token(TokenType.LPAREN, "(");
+                case ')' -> new Token(TokenType.RPAREN, ")");
+                case '\0' -> new Token(TokenType.EOF, "eof");
                 default -> {
                     if (Character.isDigit(ch)) {
                         StringBuilder number = new StringBuilder();
@@ -44,10 +49,13 @@ public class Lexical implements Iterable< Token> {
                             number.append(sourceCode.charAt(index));
                             index++;
                         }
-                        currentToken = new Token(TokenType.NUMBER, Integer.parseInt(number.toString()));
+                        index--;
+                        yield new Token(TokenType.NUMBER, Integer.parseInt(number.toString()));
                     }
+                    throw new RuntimeException("不支持的字符" + ch);
                 }
-            }
+            };
+            index++;
             tokenList.add(currentToken);
         }
     }
