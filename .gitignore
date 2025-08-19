@@ -24,3 +24,8 @@ hs_err_pid*
 replay_pid*
 /.idea/
 /java/spring/target/
+/js/mini-react/.idea/
+/js/mini-react/v03/vite-project/node_modules/
+/js/mini-react/v02/vite-project/node_modules/
+/java/collection/target/
+/java/interpreter/target/
