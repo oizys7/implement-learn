@@ -1,6 +1,7 @@
 package com.oizys.study.ast;
 
-import com.oizys.study.Lexical;
+import com.oizys.study.core.Lexical;
+import com.oizys.study.visitor.AstVisitor;
 
 /**
  * @author wyn

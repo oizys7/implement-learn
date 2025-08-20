@@ -1,4 +1,4 @@
-package com.oizys.study.ast;
+package com.oizys.study.enums;
 
 public enum BiOperateType {
     ADD,

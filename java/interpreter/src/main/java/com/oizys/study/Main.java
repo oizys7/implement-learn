@@ -1,7 +1,8 @@
 package com.oizys.study;
 
-import com.oizys.study.ast.PrintVisitor;
-import com.oizys.study.ast.ProgramNode;
+import com.oizys.study.core.Lexical;
+import com.oizys.study.core.Parser;
+import com.oizys.study.visitor.CodeGen;
 
 /**
  * @author wyn
@@ -14,17 +15,6 @@ public class Main {
             throw new RuntimeException("请输入代码");
         }
         Lexical lex = new Lexical(args[0]);
-        Parser parser = new Parser(lex);
-        parser.parse();
-        System.out.println();
-        parser.accept(new CodeGen());
-    }
-
-    public static void test() {
-        Lexical lex = new Lexical(CODE);
-        for (Token token : lex) {
-            System.out.print(token.getValue() + " ");
-        }
         Parser parser = new Parser(lex);
         parser.parse();
         System.out.println();

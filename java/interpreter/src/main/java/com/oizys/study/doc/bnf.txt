@@ -22,3 +22,19 @@ MultiExpr            :=      PrimaryExpr
 PrimaryExpr          :=      Num
                      :=      (Expr)
 -----------------------------------------
+支持变量和赋值：a=10;a+10;
+Prog                 :=      Stmt*
+Stmt                 :=      Expr;
+Expr                 :=      Expr
+Expr                 :=      AddiExpr
+                     :=      AddExpr = Expr
+AddExpr              :=      MultiExpr
+                     :=      AddExpr + MultiExpr
+                     :=      AddExpr -  MultiExpr
+MultiExpr            :=      PrimaryExpr
+                     :=      MultiExpr * PrimaryExpr
+                     :=      MultiExpr / PrimaryExpr
+PrimaryExpr          :=      Num
+                     :=      (Expr)
+                     :=      Id
+-----------------------------------------

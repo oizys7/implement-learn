@@ -1,4 +1,4 @@
-package com.oizys.study;
+package com.oizys.study.visitor;
 
 import com.oizys.study.ast.*;
 import com.oizys.study.ast.BiOperateNode;
@@ -7,6 +7,7 @@ public class CodeGen implements AstVisitor {
 
     private int stackIndex = 0;
 
+    @Override
     public void accept(ProgramNode node) {
         StringBuilder sb = new StringBuilder();
         System.out.println(""" 
@@ -24,6 +25,7 @@ public class CodeGen implements AstVisitor {
             \tret""");
     }
 
+    @Override
     public void accept(BiOperateNode node) {
         node.right.accept(this);
         push();
@@ -42,6 +44,7 @@ public class CodeGen implements AstVisitor {
         }
     }
 
+    @Override
     public void accept(ConstantNode node) {
         System.out.println("\tmov $"+ node.value +", %rax");
     }

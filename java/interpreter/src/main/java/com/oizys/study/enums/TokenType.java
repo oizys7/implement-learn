@@ -1,4 +1,4 @@
-package com.oizys.study;
+package com.oizys.study.enums;
 
 /**
  * @author wyn

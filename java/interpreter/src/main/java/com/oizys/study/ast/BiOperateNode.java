@@ -1,7 +1,9 @@
 package com.oizys.study.ast;
 
-import com.oizys.study.Lexical;
-import com.oizys.study.TokenType;
+import com.oizys.study.core.Lexical;
+import com.oizys.study.enums.BiOperateType;
+import com.oizys.study.enums.TokenType;
+import com.oizys.study.visitor.AstVisitor;
 
 /**
  * @author wyn

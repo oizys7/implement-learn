@@ -1,4 +1,6 @@
-package com.oizys.study;
+package com.oizys.study.core;
+
+import com.oizys.study.enums.TokenType;
 
 import java.util.ArrayList;
 import java.util.Iterator;

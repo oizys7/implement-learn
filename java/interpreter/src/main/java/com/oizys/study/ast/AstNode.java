@@ -1,6 +1,7 @@
 package com.oizys.study.ast;
 
-import com.oizys.study.Lexical;
+import com.oizys.study.core.Lexical;
+import com.oizys.study.visitor.AstVisitor;
 
 /**
  * @author wyn
@@ -12,7 +13,7 @@ public abstract class AstNode {
     public AstNode right;
     public Object value;
 
-    public abstract void accept(AstVisitor  visitor);
+    public abstract void accept(AstVisitor visitor);
     public abstract AstNode parse();
 
     public AstNode() {

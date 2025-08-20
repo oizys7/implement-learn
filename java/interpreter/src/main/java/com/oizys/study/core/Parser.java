@@ -1,7 +1,7 @@
-package com.oizys.study;
+package com.oizys.study.core;
 
 import com.oizys.study.ast.AstNode;
-import com.oizys.study.ast.AstVisitor;
+import com.oizys.study.visitor.AstVisitor;
 import com.oizys.study.ast.ProgramNode;
 
 /**
